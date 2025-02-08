@@ -16,7 +16,7 @@
         body {
             font-family: 'Great Vibes', cursive;
             background: #fff5f7;
-            min-height: 100vh;
+            min-height: 125vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,9 +37,9 @@
 
         .corazon {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background: url('https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif');
+            width: 75px;
+            height: 75px;
+            background: url('https://i.redd.it/zoaywh31gya81.gif');
             background-size: cover;
             animation: flotar 5s linear infinite;
         }
@@ -68,21 +68,18 @@
         }
 
         .sello-corazon {
-            width: 80px;
+            width: 100px;
             position: absolute;
             top: -40px;
             right: -20px;
             filter: drop-shadow(0 5px 3px rgba(0,0,0,0.1));
-            animation: flotar 2s ease-in-out infinite;
+            animation: flotar 5s ease-in-out infinite;
         }
 
         .texto-carta {
             color: #8b5f65;
             font-size: 1.4em;
             line-height: 1.6;
-            animation-duration: 3s;
-            animation-name: slide-in;
-            animation-iteration-count: infinite;
         }
 
         .botones-corazon {
@@ -118,6 +115,13 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
+
+        .gif-celebracion {
+    width: 200px;
+    display: none;
+    margin: 20px auto; /* Centra la imagen horizontalmente */
+}
+
     </style>
 </head>
 <body>
@@ -125,14 +129,16 @@
     <div class="carta-container" id="carta">
         <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" class="sello-corazon" alt="Gatito animado">
         <div class="texto-carta" id="mensaje">
-            <h2 style="color: var(--rosa-fuerte); margin: 0 0 20px 0;">Para tí Valentina ❤️</h2>
+            <h2 style="color: var(--rosa-fuerte); margin: 0 0 20px 0;">Carta para ti, Valentina ❤️</h2>
             <p>¿Aceptarías ser mi San Valentín?</p>
         </div>
         <div class="botones-corazon">
             <button onclick="aceptar()">¡Sí, acepto! ❤️</button>
             <button onclick="insistir()">No puedo 😿</button>
         </div>
+        <img id="gifCelebracion" class="gif-celebracion" src="https://i.pinimg.com/originals/f2/01/51/f20151a1f7e003426ca7f406b6f76c82.gif" alt="Gatitos abrazándose">
     </div>
+
     <script>
         function crearCorazones() {
             const container = document.querySelector('.corazones');
@@ -149,7 +155,16 @@
 
         function aceptar() {
             document.getElementById("carta").classList.add("carta-abierta");
-            document.getElementById("mensaje").innerHTML = "<h2 style='color: var(--rosa-fuerte);' class='latido'>¡Gracias por aceptar ser mi San Valentín! ❤️</h2><p>Te prometo un día bonito y especial para los dos:3</p>";
+            document.getElementById("mensaje").innerHTML = `
+                <h2 style='color: var(--rosa-fuerte);' class='latido'>¡Sabía que ibas a decir que sí! ❤️</h2>
+                <p>Te prometo un día bonito y especial para los dos:3</p>
+            `;
+            
+            document.getElementById("gifCelebracion").style.display = "block";
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(crearCorazones, i * 200);
+            }
         }
 
         let intentos = 0;
