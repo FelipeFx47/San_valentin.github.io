@@ -37,16 +37,17 @@
 
         .corazon {
             position: absolute;
-            width: 75px;
-            height: 75px;
+            width: 80px;
+            height: 80px;
             background: url('https://i.redd.it/zoaywh31gya81.gif');
             background-size: cover;
-            animation: flotar 5s linear infinite;
+            opacity: 0.9; /* Reducción de intensidad */
+            animation: flotar 7s linear infinite;
         }
 
         @keyframes flotar {
-            from { transform: translateY(100vh) scale(0.5); opacity: 1; }
-            to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+            from { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
+            to { transform: translateY(-10vh) scale(1); opacity: 0.8; }
         }
 
         .carta-container {
@@ -68,17 +69,17 @@
         }
 
         .sello-corazon {
-            width: 100px;
+            width: 80px;
             position: absolute;
-            top: -40px;
-            right: -20px;
+            top: -30px;
+            right: -15px;
             filter: drop-shadow(0 5px 3px rgba(0,0,0,0.1));
             animation: flotar 5s ease-in-out infinite;
         }
 
         .texto-carta {
             color: #8b5f65;
-            font-size: 1.4em;
+            font-size: 1.2em;
             line-height: 1.6;
         }
 
@@ -86,16 +87,16 @@
             margin-top: 30px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         button {
             background: var(--rosa-fuerte);
             color: white;
             border: none;
-            padding: 15px 35px;
+            padding: 12px 30px;
             border-radius: 30px;
-            font-size: 1.2em;
+            font-size: 1em;
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
@@ -113,15 +114,37 @@
 
         @keyframes latido {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.5); }
         }
 
+        /* Ajustes para el GIF de celebración */
         .gif-celebracion {
-    width: 200px;
-    display: none;
-    margin: 20px auto; /* Centra la imagen horizontalmente */
-}
+            width: 80%;
+            max-width: 250px;
+            display: none;
+            margin: 20px auto; /* Centra la imagen */
+            filter: brightness(0.8); /* Reduce la intensidad del brillo */
+        }
 
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 600px) {
+            .carta-container {
+                width: 95%;
+                padding: 30px 20px;
+            }
+            .texto-carta {
+                font-size: 1em;
+            }
+            .sello-corazon {
+                width: 70px;
+                top: -25px;
+                right: -10px;
+            }
+            button {
+                padding: 10px 25px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -142,7 +165,7 @@
     <script>
         function crearCorazones() {
             const container = document.querySelector('.corazones');
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 8; i++) {
                 let heart = document.createElement('div');
                 heart.className = 'corazon';
                 heart.style.left = Math.random() * 100 + 'vw';
@@ -151,7 +174,7 @@
                 setTimeout(() => heart.remove(), 5000);
             }
         }
-        setInterval(crearCorazones, 1000);
+        setInterval(crearCorazones, 1200);
 
         function aceptar() {
             document.getElementById("carta").classList.add("carta-abierta");
@@ -159,11 +182,11 @@
                 <h2 style='color: var(--rosa-fuerte);' class='latido'>¡Sabía que ibas a decir que sí! ❤️</h2>
                 <p>Te prometo un día bonito y especial para los dos:3</p>
             `;
-            
+
             document.getElementById("gifCelebracion").style.display = "block";
 
-            for (let i = 0; i < 30; i++) {
-                setTimeout(crearCorazones, i * 200);
+            for (let i = 0; i < 2; i++) {
+                setTimeout(crearCorazones, i * 50);
             }
         }
 
@@ -175,13 +198,9 @@
                 "No me dejes con el corazón roto... 💔",
                 "Eres muy especial para mí... 😿"
             ];
-            
-            if (intentos < mensajes.length) {
-                alert(mensajes[intentos]);
-                intentos++;
-            } else {
-                alert("Entiendo... pero siempre tendrás un lugar especial en mi corazón. 💕");
-            }
+
+            alert(mensajes[intentos] || "Entiendo... pero siempre tendrás un lugar especial en mi corazón. 💕");
+            intentos++;
         }
     </script>
 </body>
